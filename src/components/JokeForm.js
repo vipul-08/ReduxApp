@@ -8,25 +8,18 @@ class JokeForm extends Component {
     let id = this.props.jokes.length + 1;
     let jokeTitle = document.getElementById("joke-title").value;
     let jokeText = document.getElementById("joke-text").value;
-
+    let timestamp = new Date().getUTCMilliseconds();
     let joke = {
       jokeTitle: jokeTitle,
       jokeString: jokeText,
-      userName: "vipul-08"
+      userName: "vipul-08",
+      _id: timestamp
     };
 
-    fetch("http://127.0.0.1:5000/joke", {
-      method: "post",
-      body: JSON.stringify(joke)
-    })
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById("joke-title").value = "";
-        document.getElementById("joke-text").value = "";
-        console.log(data);
-        joke._id = data.InsertedID;
-        this.props.createJoke(joke);
-      });
+    document.getElementById("joke-title").value = "";
+    document.getElementById("joke-text").value = "";
+    
+    this.props.createJoke(joke);
   };
 
   render() {

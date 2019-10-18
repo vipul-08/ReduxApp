@@ -3,34 +3,12 @@ import { connect } from "react-redux";
 import { createJoke, deleteJoke } from "../actions";
 
 class JokeList extends Component {
-  componentWillMount() {
-    fetch("http://127.0.0.1:5000/joke")
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        for (let joke of data) {
-          console.log(joke);
-          this.props.createJoke(joke);
-        }
-      });
-  }
-
-  componentDidMount() {
-    console.log("3");
-  }
 
   onDeleteJoke(jokeId) {
-    fetch("http://127.0.0.1:5000/joke", {
-      method: "DELETE",
-      body: JSON.stringify({ _id: jokeId })
-    }).then(() => {
       this.props.deleteJoke(jokeId);
-    });
   }
 
   render() {
-    console.log("2");
     return (
       <div>
         <h2>All Jokes:</h2>
