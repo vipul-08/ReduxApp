@@ -17,7 +17,7 @@ class JokeList extends Component {
           {this.props.jokes.map(joke => {
             return (
               <li key={joke._id}>
-                <h3>Joke Title: {joke.jokeTitle}</h3>
+                <h3>Joke Title: <i>{joke.jokeTitle}</i></h3>
                 {joke.jokeString}
                 <button
                   onClick={() => this.onDeleteJoke(joke._id)}
